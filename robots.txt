@@ -1,0 +1,43 @@
+# robots.txt - 允许所有搜索引擎和AI爬虫抓取
+User-agent: *
+Allow: /
+
+# 允许主流AI搜索引擎爬虫
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: claudebot
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Baiduspider-render
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# 网站地图
+Sitemap: https://daiwangjie.github.io/sitemap.xml

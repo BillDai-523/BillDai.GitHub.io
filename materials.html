@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>新能源汽车技术资料 | 动力电池·驱动电机·整车控制·充电系统 - 戴旺杰</title>
+  <meta name="description" content="新能源汽车检测与维修专业技术资料库，涵盖动力电池系统（BMS、SOC估算、绝缘检测）、驱动电机系统（永磁同步电机、MCU、编码器）、整车控制系统（VCU、CAN总线、高压上下电）、充电系统（快充慢充、OBC、DC/DC）的原理讲解与故障诊断方法。作者：戴旺杰，技师学院汽车工程系专业教师。">
+  <meta name="keywords" content="新能源汽车技术资料,动力电池系统,BMS电池管理系统,SOC估算,驱动电机,永磁同步电机,电机控制器MCU,整车控制器VCU,CAN总线,高压上下电,充电系统,车载充电机OBC,DC/DC变换器,故障诊断,戴旺杰">
+  <meta name="author" content="戴旺杰">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://daiwangjie.github.io/materials.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="新能源汽车检测与维修技术资料库">
+  <meta property="og:description" content="动力电池、驱动电机、整车控制、充电系统核心技术资料与故障诊断方法。">
+  <meta property="og:locale" content="zh_CN">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "新能源汽车检测与维修技术资料库",
+    "description": "涵盖动力电池系统、驱动电机系统、整车控制系统、充电系统的技术资料与故障诊断方法",
+    "author": { "@type": "Person", "name": "戴旺杰", "jobTitle": "专业教师" },
+    "about": ["新能源汽车", "动力电池", "驱动电机", "整车控制", "充电系统", "故障诊断"],
+    "inLanguage": "zh-CN"
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-brand">
+          <span class="logo-icon">&#9889;</span>
+          <span class="brand-text">
+            <span>戴旺杰教学资料库</span>
+            <span class="brand-sub">新能源汽车检测与维修</span>
+          </span>
+        </a>
+        <button class="navbar-toggle" aria-label="菜单">&#9776;</button>
+        <ul class="navbar-menu">
+          <li><a href="index.html">首页</a></li>
+          <li><a href="teaching-design.html">教学设计</a></li>
+          <li><a href="materials.html">专业资料</a></li>
+          <li><a href="research.html">论文研究</a></li>
+          <li><a href="about.html">关于</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header section-title-left">
+        <h2>新能源汽车检测与维修技术资料</h2>
+        <p>动力电池 · 驱动电机 · 整车控制 · 充电系统四大核心技术模块资料</p>
+      </div>
+
+      <!-- 动力电池系统 -->
+      <div id="battery" class="article" style="margin-bottom:64px;">
+        <div class="article-header">
+          <h1>动力电池系统技术资料</h1>
+          <div class="article-meta">
+            <span>&#128197; 更新：2026-06</span>
+            <span>&#128218; 模块：动力电池系统</span>
+            <span>&#9997; 作者：戴旺杰</span>
+          </div>
+        </div>
+        <div class="article-body">
+          <h2>一、动力电池系统概述</h2>
+          <p>动力电池系统是新能源汽车的核心能量存储装置，由电池模组、BMS电池管理系统、热管理系统、高压电气系统等组成。当前主流新能源汽车采用<strong>三元锂电池</strong>和<strong>磷酸铁锂电池</strong>两种技术路线，各有优劣。</p>
+
+          <table>
+            <tr><th>参数</th><th>三元锂电池</th><th>磷酸铁锂电池</th></tr>
+            <tr><td>能量密度</td><td>高（200-300 Wh/kg）</td><td>中（150-180 Wh/kg）</td></tr>
+            <tr><td>安全性</td><td>中</td><td>高</td></tr>
+            <tr><td>循环寿命</td><td>2000-3000次</td><td>3000-5000次</td></tr>
+            <tr><td>低温性能</td><td>优</td><td>一般</td></tr>
+            <tr><td>成本</td><td>较高</td><td>较低</td></tr>
+          </table>
+
+          <h2>二、BMS电池管理系统</h2>
+          <p>BMS（Battery Management System）是动力电池系统的"大脑"，核心功能包括：</p>
+          <ul>
+            <li><strong>数据采集：</strong>实时采集每串单体电池电压、温度、总电压、总电流等参数</li>
+            <li><strong>SOC估算：</strong>估算电池荷电状态（State of Charge），常用安时积分法+开路电压法+卡尔曼滤波</li>
+            <li><strong>SOH估算：</strong>评估电池健康状态（State of Health），基于容量衰减和内阻变化</li>
+            <li><strong>均衡管理：</strong>被动均衡或主动均衡，消除单体电池差异</li>
+            <li><strong>热管理：</strong>控制电池工作温度在适宜范围（20-35°C），防止热失控</li>
+            <li><strong>安全保护：</strong>过充过放保护、过流保护、绝缘监测、高压互锁</li>
+          </ul>
+
+          <h2>三、动力电池检测要点</h2>
+          <h3>3.1 绝缘电阻检测</h3>
+          <p>使用兆欧表（推荐500V量程）测量电池包正极/负极对地绝缘电阻，标准要求绝缘电阻≥500 Ω/V（参考GB/T 18384）。检测前必须做好高压安全防护：穿戴绝缘手套、绝缘鞋，使用绝缘工具，设置安全警示。</p>
+
+          <h3>3.2 单体电压一致性分析</h3>
+          <p>通过诊断仪或BMS上位机读取各串单体电压，分析电压极差（最高值与最低值之差）。正常状态下极差应＜50mV，若极差过大则需进行均衡充电或更换单体。</p>
+
+          <h3>3.3 电池容量衰减评估</h3>
+          <p>通过满充满放测试实际容量，与标称容量对比计算衰减率。SOH = 实际容量 / 标称容量 × 100%。当SOH低于80%时，建议更换电池包。</p>
+
+          <div class="info-box">
+            <h3>&#9888; 高压安全提示</h3>
+            <p>新能源汽车高压系统电压可达300-750V，操作前必须完成高压断电、验电、放电、接地等安全步骤。严禁带电操作高压部件，全程穿戴绝缘防护装备。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 驱动电机系统 -->
+      <div id="motor" class="article" style="margin-bottom:64px;">
+        <div class="article-header">
+          <h1>驱动电机系统技术资料</h1>
+          <div class="article-meta">
+            <span>&#128197; 更新：2026-06</span>
+            <span>&#128218; 模块：驱动电机系统</span>
+            <span>&#9997; 作者：戴旺杰</span>
+          </div>
+        </div>
+        <div class="article-body">
+          <h2>一、驱动电机系统概述</h2>
+          <p>驱动电机系统是新能源汽车的动力输出装置，由驱动电机、电机控制器（MCU）、减速器、传动系统等组成。主流新能源汽车采用<strong>永磁同步电机（PMSM）</strong>，部分车型采用交流异步电机（ASM）。</p>
+
+          <h2>二、永磁同步电机工作原理</h2>
+          <p>永磁同步电机转子采用永磁体励磁，定子绕组通入三相交流电产生旋转磁场，转子在旋转磁场作用下同步旋转。电机控制器（MCU）通过<strong>矢量控制（FOC）</strong>算法精确控制定子电流的幅值和相位，实现扭矩和转速的精准调节。</p>
+          <p>MCU核心功能包括：直流-交流逆变（逆变桥）、扭矩控制、转速控制、弱磁控制、再生制动控制、过温过流保护等。</p>
+
+          <h2>三、驱动电机检测要点</h2>
+          <h3>3.1 电机绕组检测</h3>
+          <p>使用万用表测量三相绕组电阻，正常值应在毫欧级且三相均衡（偏差＜5%）。使用兆欧表测量绕组对地绝缘电阻，应≥20MΩ。相间短路或匝间短路会导致三相电阻不平衡。</p>
+
+          <h3>3.2 编码器/旋变变压器检测</h3>
+          <p>编码器或旋变变压器用于反馈转子位置，是矢量控制的关键传感器。检测内容包括：供电电压（通常5V或12V）、信号波形、零位标定。编码器故障会导致电机无法正常启动或抖动。</p>
+
+          <h3>3.3 电机温度监测</h3>
+          <p>驱动电机内置温度传感器（NTC热敏电阻），监测绕组温度和轴承温度。正常工作温度一般在-40°C至150°C范围，超过限值MCU将触发降功率保护。温度异常升高可能指示冷却系统故障或绕组异常。</p>
+
+          <h2>四、常见故障码分析</h2>
+          <table>
+            <tr><th>故障码</th><th>含义</th><th>排查方向</th></tr>
+            <tr><td>P0A01</td><td>电机相电流过大</td><td>检查绕组短路、MCU驱动</td></tr>
+            <tr><td>P0A02</td><td>电机过温</td><td>检查冷却系统、负载情况</td></tr>
+            <tr><td>P0A3F</td><td>电机位置传感器故障</td><td>检查编码器接线和信号</td></tr>
+            <tr><td>P0A4B</td><td>电机控制模块故障</td><td>检查MCU供电和通信</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- 整车控制系统 -->
+      <div id="vcu" class="article" style="margin-bottom:64px;">
+        <div class="article-header">
+          <h1>整车控制系统技术资料</h1>
+          <div class="article-meta">
+            <span>&#128197; 更新：2026-06</span>
+            <span>&#128218; 模块：整车控制系统</span>
+            <span>&#9997; 作者：戴旺杰</span>
+          </div>
+        </div>
+        <div class="article-body">
+          <h2>一、整车控制系统概述</h2>
+          <p>整车控制系统以<strong>整车控制器（VCU）</strong>为核心，通过CAN总线协调动力电池系统（BMS）、驱动电机系统（MCU）、充电系统、制动系统、仪表等各子系统工作，实现整车的能量管理、扭矩分配、高压上下电控制等功能。</p>
+
+          <h2>二、VCU核心功能</h2>
+          <ul>
+            <li><strong>驾驶员意图解析：</strong>解析加速踏板、制动踏板、挡位信号，计算需求扭矩</li>
+            <li><strong>扭矩管理：</strong>根据需求扭矩、电池SOC、电机状态等计算实际输出扭矩</li>
+            <li><strong>能量管理：</strong>驱动与再生制动的能量分配策略</li>
+            <li><strong>高压上下电控制：</strong>控制高压继电器，管理预充电过程</li>
+            <li><strong>故障管理：</strong>故障检测、分级处理、跛行模式</li>
+            <li><strong>CAN通信管理：</strong>与各子系统进行CAN报文收发</li>
+          </ul>
+
+          <h2>三、高压上下电流程</h2>
+          <p>高压上电流程是新能源汽车安全操作的核心环节：</p>
+          <ol>
+            <li><strong>低压上电：</strong>钥匙ON档，VCU及各控制器低压供电启动</li>
+            <li><strong>自检：</strong>各子系统完成自检，VCU确认无严重故障</li>
+            <li><strong>预充电：</strong>闭合负极主继电器和预充继电器，通过预充电阻给电机控制器母线电容充电</li>
+            <li><strong>预充完成判定：</strong>母线电压达到电池总电压的90%以上</li>
+            <li><strong>闭合正极主继电器：</strong>断开预充继电器，闭合正极主继电器</li>
+            <li><strong>高压就绪：</strong>VCU发送高压就绪信号，系统进入待驱动状态</li>
+          </ol>
+          <p>下电流程则为逆序：断开正极主继电器→断开负极主继电器→主动放电。</p>
+
+          <h2>四、CAN总线通信基础</h2>
+          <p>新能源汽车各控制器之间通过<strong>CAN总线</strong>通信。CAN报文包含ID、数据场（最多8字节）、校验信息。常见波特率为250kbps或500kbps。诊断时使用CAN分析仪抓取报文，分析各控制器通信状态。</p>
+          <p>排查CAN通信故障的要点：</p>
+          <ul>
+            <li>检查CAN_H和CAN_L线路是否短路或断路</li>
+            <li>检查终端电阻（120Ω × 2，分别在总线两端）</li>
+            <li>使用示波器观察CAN波形是否正常</li>
+            <li>确认各节点供电和接地正常</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 充电系统 -->
+      <div id="charging" class="article">
+        <div class="article-header">
+          <h1>充电系统技术资料</h1>
+          <div class="article-meta">
+            <span>&#128197; 更新：2026-06</span>
+            <span>&#128218; 模块：充电系统</span>
+            <span>&#9997; 作者：戴旺杰</span>
+          </div>
+        </div>
+        <div class="article-body">
+          <h2>一、充电系统概述</h2>
+          <p>新能源汽车充电系统分为<strong>交流慢充</strong>和<strong>直流快充</strong>两种方式。交流慢充通过车载充电机（OBC）将交流电转换为直流电给动力电池充电；直流快充由充电桩直接输出直流电给动力电池充电。</p>
+
+          <h2>二、交流慢充系统</h2>
+          <p>交流慢充系统由充电口、车载充电机（OBC）、DC/DC变换器等组成。充电口包含L、N、PE、CP（控制导引）、CC（连接确认）等端子。OBC将220V/380V交流电转换为高压直流电（如400V）给电池充电。</p>
+          <p>DC/DC变换器将高压直流电转换为12V低压直流电，为整车低压用电器供电并给12V蓄电池充电。</p>
+
+          <h2>三、直流快充系统</h2>
+          <p>直流快充系统遵循<strong>GB/T 27930</strong>充电协议。充电过程包含以下阶段：</p>
+          <ol>
+            <li><strong>物理连接：</strong>充电枪插入充电口，CC1/CC2信号确认连接</li>
+            <li><strong>低压辅助供电：</strong>充电桩为车辆控制器提供A+/A-低压供电</li>
+            <li><strong>握手：</strong>充电桩与车辆BMS进行报文握手</li>
+            <li><strong>参数配置：</strong>BMS发送电池参数（最高允许电压、电流等）</li>
+            <li><strong>充电阶段：</strong>充电桩按BMS需求输出电流，实时调整</li>
+            <li><strong>充电结束：</strong>BMS发送停止充电指令</li>
+          </ol>
+
+          <h2>四、充电系统常见故障</h2>
+          <table>
+            <tr><th>故障现象</th><th>可能原因</th><th>排查方法</th></tr>
+            <tr><td>无法充电</td><td>充电口CC/CP信号异常、OBC故障</td><td>检查充电口端子、OBC供电</td></tr>
+            <tr><td>充电中断</td><td>温度过高、通信异常</td><td>检查温度传感器、CAN通信</td></tr>
+            <tr><td>充电慢</td><td>OBC降功率、电池低温</td><td>检查OBC状态、电池加热</td></tr>
+            <tr><td>DC/DC异常</td><td>DC/DC变换器故障</td><td>检查12V输出电压</td></tr>
+          </table>
+
+          <div class="info-box">
+            <h3>&#128161; 充电安全要点</h3>
+            <p>充电前检查充电口无水渍、无异物、无烧蚀痕迹。充电过程中如闻到异味或发现异常发热，应立即停止充电。维修充电系统前必须断开高压电源并进行验电放电。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>&#9889; 戴旺杰·新能源汽车教学资料库</h3>
+          <p>技师学院汽车工程系新能源汽车检测与维修专业工学一体化课程教学资源平台。</p>
+        </div>
+        <div class="footer-col">
+          <h4>资料导航</h4>
+          <ul>
+            <li><a href="teaching-design.html">教学设计</a></li>
+            <li><a href="materials.html">专业资料</a></li>
+            <li><a href="research.html">论文研究</a></li>
+            <li><a href="about.html">关于戴旺杰</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>技术领域</h4>
+          <ul>
+            <li><a href="materials.html#battery">动力电池系统</a></li>
+            <li><a href="materials.html#motor">驱动电机系统</a></li>
+            <li><a href="materials.html#vcu">整车控制系统</a></li>
+            <li><a href="materials.html#charging">充电系统</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 戴旺杰 · 新能源汽车检测与维修教学资料库 | 技师学院汽车工程系 | 工学一体化课程教学</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
